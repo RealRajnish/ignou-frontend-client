@@ -3,10 +3,10 @@ import { createContext, useContext, useReducer, useEffect } from "react";
 import reducer from "../reducers/productReducer";
 const AppContext = createContext();
 
-const API = "/reqProducts";
-// const API = "https://ignou-backend.onrender.com/reqProducts";
-const API2 = "/reqStrayProducts";
-// const API2 = "https://ignou-backend.onrender.com/reqStrayProducts";
+// const API = "/reqProducts";
+const API = "https://ignou-backend.onrender.com/reqProducts";
+// const API2 = "/reqStrayProducts";
+const API2 = "https://ignou-backend.onrender.com/reqStrayProducts";
 
 const initialState = {
   isLoading: false,
