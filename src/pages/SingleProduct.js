@@ -1,32 +1,31 @@
-import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
-import MyImage from '../components/MyImage';
-import PageNavigation from '../components/PageNavigation';
-import { useProductContext } from '../contexts/productContext';
-import FormatPrice from '../helpers/FormatPrice';
-import { Container } from '../styles/Container';
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import styled from "styled-components";
+import MyImage from "../components/MyImage";
+import PageNavigation from "../components/PageNavigation";
+import { useProductContext } from "../contexts/productContext";
+import FormatPrice from "../helpers/FormatPrice";
+import { Container } from "../styles/Container";
 import { MdSecurity } from "react-icons/md";
 import { TbTruckDelivery, TbReplace } from "react-icons/tb";
 import { SiAdguard } from "react-icons/si";
-import AddToCart from '../components/AddToCart';
-import Stars from '../components/Stars';
+import AddToCart from "../components/AddToCart";
+import Stars from "../components/Stars";
 
-const API = "/reqSingleProducts/";
-// const API = "https://api.pujakaitem.com/api/products";
+// const API = "/reqSingleProducts/";
+const API = "https://ignou-backend.onrender.com/reqSingleProducts/";
 
 const SingleProduct = () => {
-  const { getSingleProduct, isSingleLoading, singleProduct } = useProductContext();
+  const { getSingleProduct, isSingleLoading, singleProduct } =
+    useProductContext();
 
   const { id } = useParams();
-
 
   useEffect(() => {
     // getSingleProduct(`${API, id}`);
     getSingleProduct(`${API}${id}`);
   }, []);
   const {
-
     id: alias,
     breed,
     age,
@@ -39,7 +38,6 @@ const SingleProduct = () => {
     image,
   } = singleProduct;
   console.log(breed);
-
 
   if (isSingleLoading) {
     return <div className="page_loading">Loading.....</div>;
@@ -109,11 +107,11 @@ const SingleProduct = () => {
         </div>
       </Container>
     </Wrapper>
-  )
-}
+  );
+};
 
 const Wrapper = styled.section`
-.container {
+  .container {
     padding: 9rem 0;
   }
 
@@ -197,4 +195,4 @@ const Wrapper = styled.section`
   }
 `;
 
-export default SingleProduct
+export default SingleProduct;
