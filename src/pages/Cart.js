@@ -1,12 +1,12 @@
-import React from 'react'
-import { NavLink, useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import CartItem from '../components/CartItem';
-import { useCartContext } from '../contexts/cartContext';
-import Button from "../styles/Button"
-import FormatPrice from '../helpers/FormatPrice';
-import { useUserContext } from '../contexts/userContext';
-import axios from 'axios';
+import React from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import CartItem from "../components/CartItem";
+import { useCartContext } from "../contexts/cartContext";
+import Button from "../styles/Button";
+import FormatPrice from "../helpers/FormatPrice";
+import { useUserContext } from "../contexts/userContext";
+import axios from "axios";
 
 const Cart = () => {
   const { cart, clearCart, total_price, shipping_fee } = useCartContext();
@@ -21,12 +21,19 @@ const Cart = () => {
     console.log(cart);
     if (userLoggedIn) {
       // console.log("user is logged in to purchase")
-      const userRes = window.confirm("Are you sure you want to purchase the items present in your cart..!!");
+      const userRes = window.confirm(
+        "Are you sure you want to purchase the items present in your cart..!!"
+      );
       if (userRes) {
         try {
-          const resp = await axios.post("/reqPurchase", { order_details, customer_details });
+          const resp = await axios.post(
+            "https://ignou-backend.onrender.com/reqPurchase",
+            { order_details, customer_details }
+          );
           console.log(resp.data);
-          window.alert(`Dear ${customer_details.name} Your Order has been placed Successfully..!! Our team will contact you soon!!`)
+          window.alert(
+            `Dear ${customer_details.name} Your Order has been placed Successfully..!! Our team will contact you soon!!`
+          );
           clearCart();
         } catch (error) {
           console.log(error);
@@ -35,7 +42,7 @@ const Cart = () => {
     } else {
       Navigate("/loginPage");
     }
-  }
+  };
 
   if (cart.length === 0) {
     return (
@@ -59,11 +66,9 @@ const Cart = () => {
         </div>
         <hr />
         <div className="cart-item">
-          {
-            cart.map((curElem) => {
-              return <CartItem key={curElem.id} {...curElem} />
-            })
-          }
+          {cart.map((curElem) => {
+            return <CartItem key={curElem.id} {...curElem} />;
+          })}
         </div>
         <hr />
         <div className="cart-two-button">
@@ -106,11 +111,11 @@ const Cart = () => {
         </div>
       </div>
     </Wrapper>
-  )
-}
+  );
+};
 
 const EmptyDiv = styled.section`
- display: grid;
+  display: grid;
   place-items: center;
   height: 50vh;
 
@@ -122,190 +127,187 @@ const EmptyDiv = styled.section`
 `;
 
 const Wrapper = styled.section`
- padding: 9rem 0;
+  padding: 9rem 0;
 
-.grid-four-column {
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.grid-five-column {
-  grid-template-columns: repeat(4, 1fr) 0.3fr;
-  text-align: center;
-  align-items: center;
-}
-.cart-heading {
-  text-align: center;
-  text-transform: uppercase;
-}
-hr {
-  margin-top: 1rem;
-}
-.cart-item {
-  padding: 3.2rem 0;
-  display: flex;
-  flex-direction: column;
-  gap: 3.2rem;
-}
-
-.cart-user--profile {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 1.2rem;
-  margin-bottom: 5.4rem;
-
-  img {
-    width: 8rem;
-    height: 8rem;
-    border-radius: 50%;
-  }
-  h2 {
-    font-size: 2.4rem;
-  }
-}
-.cart-user--name {
-  text-transform: capitalize;
-}
-.cart-image--name {
-  /* background-color: red; */
-  align-items: center;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: 0.4fr 1fr;
-  text-transform: capitalize;
-  text-align: left;
-  img {
-    max-width: 5rem;
-    height: 5rem;
-    object-fit: contain;
-    color: transparent;
+  .grid-four-column {
+    grid-template-columns: repeat(4, 1fr);
   }
 
-  .color-div {
-    display: flex;
+  .grid-five-column {
+    grid-template-columns: repeat(4, 1fr) 0.3fr;
+    text-align: center;
     align-items: center;
-    justify-content: flex-start;
-    gap: 1rem;
-
-    .color-style {
-      width: 1.4rem;
-      height: 1.4rem;
-
-      border-radius: 50%;
-    }
   }
-}
-
-.cart-two-button {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: space-between;
-
-  .btn-clear {
-    background-color: #e74c3c;
+  .cart-heading {
+    text-align: center;
+    text-transform: uppercase;
   }
-}
-
-.amount-toggle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2.4rem;
-  font-size: 1.4rem;
-
-  button {
-    border: none;
-    background-color: #fff;
-    cursor: pointer;
+  hr {
+    margin-top: 1rem;
   }
-
-  .amount-style {
-    font-size: 2.4rem;
-    color: ${({ theme }) => theme.colors.btn};
-  }
-}
-
-.remove_icon {
-  font-size: 1.6rem;
-  color: #e74c3c;
-  cursor: pointer;
-}
-
-.order-total--amount {
-  width: 100%;
-  margin: 4.8rem 0;
-  text-transform: capitalize;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
-
-  .order-total--subdata {
-    border: 0.1rem solid #f0f0f0;
+  .cart-item {
+    padding: 3.2rem 0;
     display: flex;
     flex-direction: column;
-    gap: 1.8rem;
-    padding: 3.2rem;
-  }
-  div {
-    display: flex;
     gap: 3.2rem;
-    justify-content: space-between;
   }
 
-  div:last-child {
-    background-color: #fafafa;
-  }
+  .cart-user--profile {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 5.4rem;
 
-  div p:last-child {
-    font-weight: bold;
-    color: ${({ theme }) => theme.colors.heading};
+    img {
+      width: 8rem;
+      height: 8rem;
+      border-radius: 50%;
+    }
+    h2 {
+      font-size: 2.4rem;
+    }
   }
-}
-
-.purchase-btn-container{
-  display: flex;
-  justify-content: end;
-}
-
-@media (max-width: ${({ theme }) => theme.media.mobile}) {
-  .grid-five-column {
-    grid-template-columns: 1.5fr 1fr 0.5fr;
+  .cart-user--name {
+    text-transform: capitalize;
   }
-  .cart-hide {
-    display: none;
+  .cart-image--name {
+    /* background-color: red; */
+    align-items: center;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 0.4fr 1fr;
+    text-transform: capitalize;
+    text-align: left;
+    img {
+      max-width: 5rem;
+      height: 5rem;
+      object-fit: contain;
+      color: transparent;
+    }
+
+    .color-div {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1rem;
+
+      .color-style {
+        width: 1.4rem;
+        height: 1.4rem;
+
+        border-radius: 50%;
+      }
+    }
   }
 
   .cart-two-button {
     margin-top: 2rem;
     display: flex;
     justify-content: space-between;
-    gap: 2.2rem;
+
+    .btn-clear {
+      background-color: #e74c3c;
+    }
+  }
+
+  .amount-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.4rem;
+    font-size: 1.4rem;
+
+    button {
+      border: none;
+      background-color: #fff;
+      cursor: pointer;
+    }
+
+    .amount-style {
+      font-size: 2.4rem;
+      color: ${({ theme }) => theme.colors.btn};
+    }
+  }
+
+  .remove_icon {
+    font-size: 1.6rem;
+    color: #e74c3c;
+    cursor: pointer;
   }
 
   .order-total--amount {
     width: 100%;
+    margin: 4.8rem 0;
     text-transform: capitalize;
-    justify-content: flex-start;
-    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
 
     .order-total--subdata {
-      width: 100%;
       border: 0.1rem solid #f0f0f0;
       display: flex;
       flex-direction: column;
       gap: 1.8rem;
       padding: 3.2rem;
     }
+    div {
+      display: flex;
+      gap: 3.2rem;
+      justify-content: space-between;
+    }
+
+    div:last-child {
+      background-color: #fafafa;
+    }
+
+    div p:last-child {
+      font-weight: bold;
+      color: ${({ theme }) => theme.colors.heading};
+    }
   }
 
-  .purchase-btn-container{
-  justify-content: flex-start;
-}
-}
+  .purchase-btn-container {
+    display: flex;
+    justify-content: end;
+  }
 
+  @media (max-width: ${({ theme }) => theme.media.mobile}) {
+    .grid-five-column {
+      grid-template-columns: 1.5fr 1fr 0.5fr;
+    }
+    .cart-hide {
+      display: none;
+    }
 
+    .cart-two-button {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 2.2rem;
+    }
 
+    .order-total--amount {
+      width: 100%;
+      text-transform: capitalize;
+      justify-content: flex-start;
+      align-items: flex-start;
+
+      .order-total--subdata {
+        width: 100%;
+        border: 0.1rem solid #f0f0f0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.8rem;
+        padding: 3.2rem;
+      }
+    }
+
+    .purchase-btn-container {
+      justify-content: flex-start;
+    }
+  }
 `;
 
-export default Cart
+export default Cart;
