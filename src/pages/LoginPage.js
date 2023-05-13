@@ -25,16 +25,15 @@ const LoginPage = () => {
 
     const { email, password } = userLogin;
     try {
-      const resp = await axios.post(
-        "https://ignou-backend.onrender.com/signin",
-        { email, password }
-      );
+      const resp = await axios.post("/signin", { email, password });
       console.log(resp.data);
       if (resp.data.code === 1) {
         window.alert("Please fill all fields properly");
       }
       if (resp.data.code === 3) {
         window.alert("Signed In Successfully ...!!");
+        checkLoggedInStatus();
+
         Navigate("/");
       }
       checkLoggedInStatus();

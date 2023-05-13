@@ -25,17 +25,17 @@ const BookAppointment = () => {
   };
 
   const customer_details = rootUser;
-  const animal_detals = state;
+  const animal_details = state;
 
   const clicked = async (e) => {
     e.preventDefault();
     console.log(`appointment button clicked`);
     if (userLoggedIn) {
       try {
-        const resp = await axios.post(
-          "https://ignou-backend.onrender.com/addAppointments",
-          { customer_details, animal_detals }
-        );
+        const resp = await axios.post("/addAppointments", {
+          customer_details,
+          animal_details,
+        });
         console.log(resp);
         if (resp.status === 200 && resp.data.code === "success") {
           window.alert(`${resp.data.msg}`);

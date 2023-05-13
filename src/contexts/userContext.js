@@ -17,10 +17,7 @@ const UserProvider = ({ children }) => {
 
   const setLogOut = async () => {
     try {
-      const resp = await axios.get(
-        "https://ignou-backend.onrender.com/logout",
-        { withCredentials: true }
-      );
+      const resp = await axios.get("/logout", { withCredentials: true });
       console.log(resp);
       dispatch({ type: "USER_LOGOUT" });
     } catch (error) {
@@ -30,7 +27,7 @@ const UserProvider = ({ children }) => {
 
   const checkLoggedInStatus = async () => {
     try {
-      const resp = await axios.get("https://ignou-backend.onrender.com/hii", {
+      const resp = await axios.get("/hii", {
         withCredentials: true,
       });
       // console.log(resp);
