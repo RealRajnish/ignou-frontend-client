@@ -12,8 +12,8 @@ import { SiAdguard } from "react-icons/si";
 import AddToCart from "../components/AddToCart";
 import Stars from "../components/Stars";
 
-// const API = "/reqSingleProducts/";
-const API = "https://ignou-backend.onrender.com/reqSingleProducts/";
+const API = "/reqSingleProducts/";
+// const API = "https://ignou-backend.onrender.com/reqSingleProducts/";
 
 const SingleProduct = () => {
   const { getSingleProduct, isSingleLoading, singleProduct } =

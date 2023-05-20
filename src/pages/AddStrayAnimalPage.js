@@ -32,10 +32,10 @@ const AddStrayAnimalPage = () => {
 
     if (userLoggedIn) {
       try {
-        const resp = await axios.post(
-          "https://ignou-backend.onrender.com/reqRegisterStray",
-          { stray_animal_info, added_by }
-        );
+        const resp = await axios.post("/reqRegisterStray", {
+          stray_animal_info,
+          added_by,
+        });
         console.log(resp.data);
         window.alert(`Your Request for registering this stray animal has been sent successfully.
                 Our team will contact you soon !!`);
