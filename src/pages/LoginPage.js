@@ -5,6 +5,7 @@ import Button from "../styles/Button";
 import { FaUserCircle } from "react-icons/fa";
 import { useUserContext } from "../contexts/userContext";
 import axios from "axios";
+import { API_10 } from "../api/Api";
 
 const LoginPage = () => {
   const { checkLoggedInStatus } = useUserContext();
@@ -25,7 +26,7 @@ const LoginPage = () => {
 
     const { email, password } = userLogin;
     try {
-      const resp = await axios.post("/signin", { email, password });
+      const resp = await axios.post(API_10, { email, password });
       console.log(resp.data);
       if (resp.data.code === 1) {
         window.alert("Please fill all fields properly");

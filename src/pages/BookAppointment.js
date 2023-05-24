@@ -5,6 +5,7 @@ import Button from "../styles/Button";
 import { FaStethoscope } from "react-icons/fa";
 import { useUserContext } from "../contexts/userContext";
 import axios from "axios";
+import { API_8 } from "../api/Api";
 
 const BookAppointment = () => {
   const { userLoggedIn, rootUser } = useUserContext();
@@ -32,7 +33,7 @@ const BookAppointment = () => {
     console.log(`appointment button clicked`);
     if (userLoggedIn) {
       try {
-        const resp = await axios.post("/addAppointments", {
+        const resp = await axios.post(API_8, {
           customer_details,
           animal_details,
         });
@@ -54,10 +55,6 @@ const BookAppointment = () => {
   return (
     <Wrapper>
       <div className="container">
-        {/* <div className="nav-link">
-                    <NavLink to="/strayAnimalPage"> <Button>Book Your Appointments Here</Button> </NavLink>
-                </div> */}
-
         <div className="main_div">
           <div className="box">
             <div className="icon-div">

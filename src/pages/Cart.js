@@ -7,6 +7,7 @@ import Button from "../styles/Button";
 import FormatPrice from "../helpers/FormatPrice";
 import { useUserContext } from "../contexts/userContext";
 import axios from "axios";
+import { API_9 } from "../api/Api";
 
 const Cart = () => {
   const { cart, clearCart, total_price, shipping_fee } = useCartContext();
@@ -26,10 +27,10 @@ const Cart = () => {
       );
       if (userRes) {
         try {
-          const resp = await axios.post(
-            "https://ignou-backend.onrender.com/reqPurchase",
-            { order_details, customer_details }
-          );
+          const resp = await axios.post(API_9, {
+            order_details,
+            customer_details,
+          });
           console.log(resp.data);
           window.alert(
             `Dear ${customer_details.name} Your Order has been placed Successfully..!! Our team will contact you soon!!`

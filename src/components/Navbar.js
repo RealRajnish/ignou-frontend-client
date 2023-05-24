@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 import { FiShoppingCart } from "react-icons/fi";
 import { CgMenu, CgClose } from "react-icons/cg";
 import { useCartContext } from "../contexts/cartContext";
-import { useUserContext } from '../contexts/userContext';
+import { useUserContext } from "../contexts/userContext";
 
 const Navbar = () => {
   const [menuIcon, setMenuIcon] = useState();
@@ -21,26 +21,27 @@ const Navbar = () => {
             onClick={() => {
               setMenuIcon(false);
               setLogOut();
-              return (1)
-            }}>
+              return 1;
+            }}
+          >
             LOGOUT
           </NavLink>
         </li>
-      )
+      );
     } else {
       return (
         <li>
           <NavLink
             to="/loginPage"
             className="navbar-link "
-            onClick={() => setMenuIcon(false)}>
+            onClick={() => setMenuIcon(false)}
+          >
             LOGIN
           </NavLink>
         </li>
-      )
+      );
     }
-  }
-
+  };
 
   return (
     <Wrapper>
@@ -50,23 +51,26 @@ const Navbar = () => {
             <NavLink
               to="/"
               className="navbar-link "
-              onClick={() => setMenuIcon(false)}>
+              onClick={() => setMenuIcon(false)}
+            >
               Home
             </NavLink>
           </li>
           <li>
             <NavLink
-              to="/about"
+              to="/profile"
               className="navbar-link "
-              onClick={() => setMenuIcon(false)}>
-              About
+              onClick={() => setMenuIcon(false)}
+            >
+              Profile
             </NavLink>
           </li>
           <li>
             <NavLink
               to="/products"
               className="navbar-link "
-              onClick={() => setMenuIcon(false)}>
+              onClick={() => setMenuIcon(false)}
+            >
               Products
             </NavLink>
           </li>
@@ -74,7 +78,8 @@ const Navbar = () => {
             <NavLink
               to="/strayAnimalPage"
               className="navbar-link "
-              onClick={() => setMenuIcon(false)}>
+              onClick={() => setMenuIcon(false)}
+            >
               Stray Animals
             </NavLink>
           </li>
@@ -82,7 +87,8 @@ const Navbar = () => {
             <NavLink
               to="/bookAppointments"
               className="navbar-link "
-              onClick={() => setMenuIcon(false)}>
+              onClick={() => setMenuIcon(false)}
+            >
               Appointments
             </NavLink>
           </li>
@@ -96,7 +102,11 @@ const Navbar = () => {
             </NavLink>
           </li> */}
           <li>
-            <NavLink to="/cart" className="navbar-link cart-trolley--link" onClick={() => setMenuIcon(false)}>
+            <NavLink
+              to="/cart"
+              className="navbar-link cart-trolley--link"
+              onClick={() => setMenuIcon(false)}
+            >
               <FiShoppingCart className="cart-trolley" />
               <span className="cart-total--item"> {total_item} </span>
             </NavLink>
@@ -118,160 +128,160 @@ const Navbar = () => {
         </div>
       </div>
     </Wrapper>
-  )
-}
+  );
+};
 const Wrapper = styled.nav`
- .navbar-lists {
-      display: flex;
-      gap: 4.8rem;
-      align-items: center;
+  .navbar-lists {
+    display: flex;
+    gap: 4.8rem;
+    align-items: center;
 
-      .navbar-link {
-        &:link,
-        &:visited {
-          display: inline-block;
-          text-decoration: none;
-          font-size: 1.8rem;
-          font-weight: 500;
-          text-transform: uppercase;
-          color: ${({ theme }) => theme.colors.black};
-          transition: color 0.3s linear;
-        }
+    .navbar-link {
+      &:link,
+      &:visited {
+        display: inline-block;
+        text-decoration: none;
+        font-size: 1.8rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        color: ${({ theme }) => theme.colors.black};
+        transition: color 0.3s linear;
+      }
 
-        &:hover,
-        &:active {
-          color: ${({ theme }) => theme.colors.helper};
-        }
+      &:hover,
+      &:active {
+        color: ${({ theme }) => theme.colors.helper};
+      }
+    }
+  }
+
+  .mobile-navbar-btn {
+    display: none;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+  }
+
+  .mobile-nav-icon[name="close-outline"] {
+    display: none;
+  }
+
+  .close-outline {
+    display: none;
+  }
+
+  .cart-trolley--link {
+    position: relative;
+
+    .cart-trolley {
+      position: relative;
+      font-size: 3.2rem;
+    }
+
+    .cart-total--item {
+      width: 2.4rem;
+      height: 2.4rem;
+      position: absolute;
+      background-color: #000;
+      color: #000;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      top: -20%;
+      left: 70%;
+      background-color: ${({ theme }) => theme.colors.helper};
+    }
+  }
+
+  .user-login--name {
+    text-transform: capitalize;
+  }
+
+  .user-logout,
+  .user-login {
+    font-size: 1.4rem;
+    padding: 0.8rem 1.4rem;
+  }
+
+  @media (max-width: ${({ theme }) => theme.media.mobile}) {
+    .mobile-navbar-btn {
+      display: inline-block;
+      z-index: 9999;
+      border: ${({ theme }) => theme.colors.black};
+
+      .mobile-nav-icon {
+        font-size: 4.2rem;
+        color: ${({ theme }) => theme.colors.black};
       }
     }
 
-    .mobile-navbar-btn {
+    .active .mobile-nav-icon {
       display: none;
-      background-color: transparent;
-      cursor: pointer;
-      border: none;
+      font-size: 4.2rem;
+      position: absolute;
+      top: 30%;
+      right: 10%;
+      color: ${({ theme }) => theme.colors.black};
+      z-index: 9999;
     }
 
-    .mobile-nav-icon[name="close-outline"] {
-      display: none;
+    .active .close-outline {
+      display: inline-block;
     }
 
-    .close-outline {
-      display: none;
+    .navbar-lists {
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: #fff;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      visibility: hidden;
+      opacity: 0;
+      transform: translateX(100%);
+      /* transform-origin: top; */
+      transition: all 0.5s linear;
     }
 
+    .active .navbar-lists {
+      visibility: visible;
+      opacity: 1;
+      transform: translateX(0);
+      z-index: 999;
+      transform-origin: right;
+      transition: all 0.5s linear;
+
+      .navbar-link {
+        font-size: 4.2rem;
+      }
+    }
     .cart-trolley--link {
       position: relative;
 
       .cart-trolley {
         position: relative;
-        font-size: 3.2rem;
+        font-size: 5.2rem;
       }
 
       .cart-total--item {
-        width: 2.4rem;
-        height: 2.4rem;
-        position: absolute;
-        background-color: #000;
-        color: #000;
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-        top: -20%;
-        left: 70%;
-        background-color: ${({ theme }) => theme.colors.helper};
+        width: 4.2rem;
+        height: 4.2rem;
+        font-size: 2rem;
       }
-    }
-
-    .user-login--name {
-      text-transform: capitalize;
     }
 
     .user-logout,
     .user-login {
-      font-size: 1.4rem;
+      font-size: 2.2rem;
       padding: 0.8rem 1.4rem;
     }
-
-    @media (max-width: ${({ theme }) => theme.media.mobile}) {
-      .mobile-navbar-btn {
-        display: inline-block;
-        z-index: 9999;
-        border: ${({ theme }) => theme.colors.black};
-
-        .mobile-nav-icon {
-          font-size: 4.2rem;
-          color: ${({ theme }) => theme.colors.black};
-        }
-      }
-
-      .active .mobile-nav-icon {
-        display: none;
-        font-size: 4.2rem;
-        position: absolute;
-        top: 30%;
-        right: 10%;
-        color: ${({ theme }) => theme.colors.black};
-        z-index: 9999;
-      }
-
-      .active .close-outline {
-        display: inline-block;
-      }
-
-      .navbar-lists {
-        width: 100vw;
-        height: 100vh;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background-color: #fff;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-
-        visibility: hidden;
-        opacity: 0;
-        transform: translateX(100%);
-        /* transform-origin: top; */
-        transition: all 0.5s linear;
-      }
-
-      .active .navbar-lists {
-        visibility: visible;
-        opacity: 1;
-        transform: translateX(0);
-        z-index: 999;
-        transform-origin: right;
-        transition: all 0.5s linear;
-
-        .navbar-link {
-          font-size: 4.2rem;
-        }
-      }
-      .cart-trolley--link {
-        position: relative;
-
-        .cart-trolley {
-          position: relative;
-          font-size: 5.2rem;
-        }
-
-        .cart-total--item {
-          width: 4.2rem;
-          height: 4.2rem;
-          font-size: 2rem;
-        }
-      }
-
-      .user-logout,
-      .user-login {
-        font-size: 2.2rem;
-        padding: 0.8rem 1.4rem;
-      }
-    }
+  }
 `;
 
-export default Navbar
+export default Navbar;

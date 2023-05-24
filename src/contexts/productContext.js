@@ -1,12 +1,8 @@
 import axios from "axios";
 import { createContext, useContext, useReducer, useEffect } from "react";
 import reducer from "../reducers/productReducer";
+import { API_2, API_3 } from "../api/Api";
 const AppContext = createContext();
-
-const API = "/reqProducts";
-// const API = "https://ignou-backend.onrender.com/reqProducts";
-const API2 = "/reqStrayProducts";
-// const API2 = "https://ignou-backend.onrender.com/reqStrayProducts";
 
 const initialState = {
   isLoading: false,
@@ -70,8 +66,8 @@ const AppProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getProducts(API);
-    getStrayProducts(API2);
+    getProducts(API_2);
+    getStrayProducts(API_3);
   }, []);
 
   return (

@@ -1,13 +1,17 @@
-import React from 'react'
-import styled from 'styled-components'
-import { useFilterContext } from '../contexts/filterContext'
+import React from "react";
+import styled from "styled-components";
+import { useFilterContext } from "../contexts/filterContext";
 import { FaCheck } from "react-icons/fa";
-import FormatPrice from "../helpers/FormatPrice"
-import Button from "../styles/Button"
-
+import FormatPrice from "../helpers/FormatPrice";
+import Button from "../styles/Button";
 
 const FilterSection = () => {
-  const { filters: { text, category, color, price, maxPrice, minPrice }, updateFilterValue, all_products, clearFilters, } = useFilterContext();
+  const {
+    filters: { text, category, color, price, maxPrice, minPrice },
+    updateFilterValue,
+    all_products,
+    clearFilters,
+  } = useFilterContext();
 
   // get the unique values of each property
   const getUniqueData = (data, attr) => {
@@ -19,7 +23,7 @@ const FilterSection = () => {
       newVal = newVal.flat();
     }
     return (newVal = ["all", ...new Set(newVal)]);
-  }
+  };
 
   // we need to have the individual data of each in an array format
   const categoryData = getUniqueData(all_products, "category");
@@ -30,7 +34,13 @@ const FilterSection = () => {
     <Wrapper>
       <div className="filter-search">
         <form onSubmit={(e) => e.preventDefault()}>
-          <input type="text" name='text' placeholder='Search' value={text} onChange={updateFilterValue} />
+          <input
+            type="text"
+            name="text"
+            placeholder="Search"
+            value={text}
+            onChange={updateFilterValue}
+          />
         </form>
       </div>
 
@@ -45,7 +55,8 @@ const FilterSection = () => {
                 name="category"
                 value={curElem}
                 className={curElem === category ? "active" : ""}
-                onClick={updateFilterValue}>
+                onClick={updateFilterValue}
+              >
                 {curElem}
               </button>
             );
@@ -61,7 +72,8 @@ const FilterSection = () => {
             name="age"
             id="age"
             className="filter-company--select"
-            onClick={updateFilterValue}>
+            onClick={updateFilterValue}
+          >
             {companyData.map((curElem, index) => {
               return (
                 <option key={index} value={curElem} name="age">
@@ -73,7 +85,7 @@ const FilterSection = () => {
         </form>
       </div>
 
-      <div className="filter-colors colors">
+      {/* <div className="filter-colors colors">
         <h3>Colors</h3>
 
         <div className="filter-color-style">
@@ -105,7 +117,7 @@ const FilterSection = () => {
             );
           })}
         </div>
-      </div>
+      </div> */}
 
       <div className="filter_price">
         <h3>Price</h3>
@@ -128,11 +140,11 @@ const FilterSection = () => {
         </Button>
       </div>
     </Wrapper>
-  )
-}
+  );
+};
 
 const Wrapper = styled.section`
-padding: 5rem 0;
+  padding: 5rem 0;
   display: flex;
   flex-direction: column;
   gap: 3rem;
@@ -238,4 +250,4 @@ padding: 5rem 0;
   }
 `;
 
-export default FilterSection
+export default FilterSection;

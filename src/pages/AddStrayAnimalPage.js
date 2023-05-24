@@ -5,6 +5,7 @@ import Button from "../styles/Button";
 import { useUserContext } from "../contexts/userContext";
 import { GiSittingDog } from "react-icons/gi";
 import axios from "axios";
+import { API_7 } from "../api/Api";
 
 const AddStrayAnimalPage = () => {
   const { userLoggedIn, rootUser } = useUserContext();
@@ -32,7 +33,7 @@ const AddStrayAnimalPage = () => {
 
     if (userLoggedIn) {
       try {
-        const resp = await axios.post("/reqRegisterStray", {
+        const resp = await axios.post(API_7, {
           stray_animal_info,
           added_by,
         });

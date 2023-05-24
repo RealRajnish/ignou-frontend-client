@@ -17,6 +17,7 @@ import StrayAnimalPage from "./pages/StrayAnimalPage";
 import BookAppointment from "./pages/BookAppointment";
 import { UserProvider } from "./contexts/userContext";
 import AddStrayAnimalPage from "./pages/AddStrayAnimalPage";
+import Profile from "./pages/Profile";
 
 function App() {
   const theme = {
@@ -49,24 +50,38 @@ function App() {
       <AppProvider>
         <FilterContextProvider>
           <CartProvider>
-            <ThemeProvider theme={theme} >
+            <ThemeProvider theme={theme}>
               <BrowserRouter>
                 <GlobalStyle />
                 <Header />
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/products" element={<Products />} />
-                  <Route path="/singleproduct/:id" element={<SingleProduct />} />
+                  <Route
+                    path="/singleproduct/:id"
+                    element={<SingleProduct />}
+                  />
                   <Route path="/cart" element={<Cart />} />
                   <Route path="/loginPage" element={<LoginPage />} />
-                  <Route path="/signUpPage" element={<UserRegistrationPage />} />
-                  <Route path="/strayAnimalPage" element={<StrayAnimalPage />} />
-                  <Route path="/bookAppointments" element={<BookAppointment />} />
-                  <Route path="/addStrayAnimal" element={<AddStrayAnimalPage />} />
+                  <Route
+                    path="/signUpPage"
+                    element={<UserRegistrationPage />}
+                  />
+                  <Route
+                    path="/strayAnimalPage"
+                    element={<StrayAnimalPage />}
+                  />
+                  <Route
+                    path="/bookAppointments"
+                    element={<BookAppointment />}
+                  />
+                  <Route
+                    path="/addStrayAnimal"
+                    element={<AddStrayAnimalPage />}
+                  />
+                  <Route path="/profile" element={<Profile />} />
+
                   <Route path="*" element={<ErrorPage />} />
-
-
-
                 </Routes>
                 <Footer />
               </BrowserRouter>

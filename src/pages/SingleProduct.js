@@ -11,9 +11,7 @@ import { TbTruckDelivery, TbReplace } from "react-icons/tb";
 import { SiAdguard } from "react-icons/si";
 import AddToCart from "../components/AddToCart";
 import Stars from "../components/Stars";
-
-const API = "/reqSingleProducts/";
-// const API = "https://ignou-backend.onrender.com/reqSingleProducts/";
+import { API_11 } from "../api/Api";
 
 const SingleProduct = () => {
   const { getSingleProduct, isSingleLoading, singleProduct } =
@@ -23,7 +21,7 @@ const SingleProduct = () => {
 
   useEffect(() => {
     // getSingleProduct(`${API, id}`);
-    getSingleProduct(`${API}${id}`);
+    getSingleProduct(`${API_11}${id}`);
   }, []);
   const {
     id: alias,

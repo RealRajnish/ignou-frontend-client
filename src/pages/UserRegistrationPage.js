@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import Button from "../styles/Button";
 import axios from "axios";
+import { API_12 } from "../api/Api";
 
 const UserRegistrationPage = () => {
   let Navigate = useNavigate();
@@ -28,10 +29,14 @@ const UserRegistrationPage = () => {
     const { name, email, phone, address, password, cpassword } = user;
 
     if (password === cpassword) {
-      const resp = await axios.post(
-        "https://ignou-backend.onrender.com/registeruser",
-        { name, email, phone, address, password, cpassword }
-      );
+      const resp = await axios.post(API_12, {
+        name,
+        email,
+        phone,
+        address,
+        password,
+        cpassword,
+      });
       // debugger
       console.log(resp.data);
       if (resp.data.code === 1) {
